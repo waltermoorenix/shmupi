@@ -5,8 +5,9 @@ function _init()
  shipy=64
  shipsx=0
  shipsy=0
- bulx=64
- buly=40
+ bulx=0
+ buly=0
+ bullet_active = false
 end
 
 function _update()
@@ -29,6 +30,7 @@ function _update()
   if btnp(5) then
      buly = shipy-3
      bulx = shipx
+     bullet_active = true
      sfx(0)
   end
   -- moving bullet
@@ -49,6 +51,8 @@ end
 function _draw()
  cls(0)
  spr(1,shipx,shipy)
- spr(2,bulx,buly)
+   if bullet_active then
+    spr(2, bulx, buly)
+   end
  
  end
