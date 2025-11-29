@@ -8,7 +8,7 @@ function _init()
  shipz=3
  bulx=0
  buly=0
- flamespr=3
+ flamespr=5
  muzzle=0
  bullet_active = false
 end
@@ -47,8 +47,8 @@ function _update()
   end
   -- flame animation
   flamespr=flamespr+1
-  if flamespr > 11
-  then flamespr = 7 
+  if flamespr > 9
+  then flamespr = 5 
   end 
   -- moving bullet
   buly = buly-2
