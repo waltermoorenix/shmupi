@@ -11,6 +11,8 @@ function _init()
  flamespr=5
  muzzle=0
  bullet_active = false
+ score=1000
+ lives=4
 end
 
 function _update()
@@ -67,6 +69,14 @@ end
 
 function _draw()
  cls(0)
+ for I=1,4 do
+  if lives>I then
+ spr(18,I*9-8,1)
+  end
+ end
+
+
+ print("score:"..score,40,2,12)
  if muzzle > 0 then
  circfill(shipx+4,shipy-2,muzzle,7)
  end
