@@ -1,10 +1,20 @@
 --shmup to learn lua D
 function _init()
  cls(0)
- shipx=64 shipy=64 shipsx=0 shipsy=0 shipz=3
- bulx=0 buly=0 flamespr=5 muzzle=0 bullet_active=false
- score=1000 lives=4
- starx={} stary={}
+ shipx=64 
+ shipy=64 
+ shipsx=0 
+ shipsy=0 
+ shipz=3
+ bulx=0 
+ buly=0 
+ flamespr=5 
+ muzzle=0 
+ bullet_active=false
+ score=1000 
+ lives=4
+ starx={} 
+ stary={}
  for i=1,100 do
   add(starx,flr(rnd(128)))
   add(stary,flr(rnd(128)))
@@ -38,7 +48,8 @@ function _update()
  end
  
  --move ship
- shipx+=shipsx shipy+=shipsy
+ shipx+=shipsx 
+ shipy+=shipsy
  
  --clamp ship
  if shipx>120 then shipx=0 end
