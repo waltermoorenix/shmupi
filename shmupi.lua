@@ -6,9 +6,8 @@ function _init()
  shipsx=0 
  shipsy=0 
  shipz=3
- bulx=0 
- buly=0 
- flamespr=5 
+bullets={}
+flamespr=5 
  muzzle=0 
  bullet_active=false
  score=1000 
@@ -31,9 +30,15 @@ function _update()
  
  --shooting
  if btnp(5) then
-  buly=shipy-3 bulx=shipx muzzle=5 bullet_active=true
-  sfx(0)
- end
+ bullet_active=true
+ add(bullets,{
+  x=shipx, y=shipy-3,
+  spr=16, -- starting sprite
+  timer=0, step=4, -- (cycles every 4 frames)
+  sp={17,33,32,16} -- bullet sprite frames
+ })
+end 
+  
  
  --animate muzzle
  if muzzle>0 then muzzle-=1 end
@@ -42,10 +47,15 @@ function _update()
  flamespr+=1 if flamespr>9 then flamespr=5 end
  
  --move bullet
- if bullet_active then
-  buly-=2
-  if buly<-8 then bullet_active=false end
+for bullet in all(bullets) do
+ bullet.y-=2 -- move up
+ bullet.timer=(bullet.timer+1)%bullet.step
+ if bullet.timer==0 then
+  bullet.spr+=1
+  if bullet.spr>#bullet.sp then bullet.spr=1 end
  end
+ if bullet.y<-8 then del(bullets,bullet) end
+end
  
  --move ship
  shipx+=shipsx 
@@ -60,6 +70,8 @@ end
 
 function _draw()
  cls(0)
+ --map
+  map(0, 0, 0, 0, 16, 16)
  --draw lives
  for i=1,4 do
   if lives>i then spr(18,i*9-8,1) end
@@ -70,8 +82,10 @@ function _draw()
  
  if muzzle>0 then circfill(shipx+4,shipy-2,muzzle,7) end
  spr(shipz,shipx,shipy)
- spr(flamespr,shipx,shipy+8)
- if bullet_active then spr(16,bulx,buly) end
+for bullet in all(bullets) do
+ spr(bullet.sp[bullet.spr],bullet.x,bullet.y)
+end
+
 end
 
 function starfield()
