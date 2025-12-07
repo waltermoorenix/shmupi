@@ -1,1 +1,1 @@
-![shmupi_1](https://github.com/user-attachments/assets/73d47c2d-1e93-4b25-91b6-e1f72d23144f)
+![shmupi_0](https://github.com/user-attachments/assets/2fe41627-98cb-4b90-bef0-07f7af7bcae6)
